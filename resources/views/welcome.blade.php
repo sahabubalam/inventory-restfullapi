@@ -18,6 +18,7 @@
 <body id="page-top">
 <div id="app">
   <div id="wrapper">
+    <nav id="sidebar" v-show="$route.path=== '/' || $route.path==='/register' ||$route.path=== '/forget'? false : true " style="display:none" >
     <!-- Sidebar -->
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -110,10 +111,13 @@
       <div class="version" id="version-ruangadmin"></div>
     </ul>
     <!-- Sidebar -->
+  </nav>
+
+
     <div id="content-wrapper" class="d-flex flex-column">
       <div id="content">
         <!-- TopBar -->
-        <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
+        <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top" id="topbar" v-show="$route.path=== '/' || $route.path==='/register' ||$route.path=== '/forget'? false : true" style="display:none" >
           <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
@@ -289,10 +293,10 @@
                   Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="login.html">
+                <router-link to="/logout" class="dropdown-item">
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Logout
-                </a>
+                </router-link>
               </div>
             </li>
           </ul>
@@ -317,6 +321,15 @@
   <script src="{{asset('js/app.js')}}"></script>
   <script src="{{asset('backend/vendor/jquery/jquery.min.js')}}"></script>
   {{-- <script src="{{asset('backend/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script> --}}
+
+<script>
+  let token = localStorage.getItem('token')
+  if(token){
+    $("#sidebar").css("display","");
+    $("#topbar").css("display","");
+  }
+</script>
+
   <script src="{{asset('backend/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
   <script src="{{asset('backend/js/ruang-admin.min.js')}}"></script>
   <script src="{{asset('backend/vendor/chart.js/Chart.min.js')}}"></script>
