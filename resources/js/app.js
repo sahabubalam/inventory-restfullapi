@@ -32,6 +32,10 @@ window.Toast=Toast;
 import User from './Helpers/User';
 
 window.User = User
+//import notification
+import Notification from './Helpers/Notification';
+
+window.Notification = Notification
 const router = new VueRouter({
     routes,
     mode: 'history'
