@@ -1,7 +1,7 @@
 <template>
    <div>
 <div class="row">
-    <router-link to="/store-product" class="btn btn-primary">Add Product</router-link>
+    <router-link to="/store-customer" class="btn btn-primary">Add Customer</router-link>
 </div>
 <br>
 <input type="text" v-model="searchTerm" placeholder="Search Here" class="form-control" style="width:300px">
@@ -11,33 +11,28 @@
               <!-- Simple Tables -->
               <div class="card">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Employee List</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Customer List</h6>
                 </div>
                 <div class="table-responsive">
                   <table class="table align-items-center table-flush">
                     <thead class="thead-light">
                       <tr>
-                        <th>Product Name</th>
-                        <th>Product Photo</th>
-                        <th>Category</th>
-                        <th>Buying Price</th>
-                        <th>Selling Price</th>
-                        <th>Quantity</th>
+                        <th>Name</th>
+                        <th>Photo</th>
+                        <th>Phone</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr v-for="product in filterSearch" :key="product.id">
-                        <td>{{product.product_name}}</td>
-                        <td><img :src="product.image" style="height:60px;width:60px"></td>
-                        <td>{{product.category_name}}</td>
-                        <td>{{product.buying_price}}</td>
-                        <td>{{product.selling_price}}</td>
-                        <td>{{product.product_quantity}}</td>
+                      <tr v-for="customer in filterSearch" :key="customer.id">
+                        <td>{{customer.name}}</td>
+                        <td><img :src="customer.photo" style="height:60px;width:60px"></td>
+                        <td>{{customer.phone}}</td>
+                
                         <td>
-                          <router-link :to="{ name:'edit-product',params:{id:product.id}}" class="btn btn-sm btn-primary">Edit</router-link>
+                          <router-link :to="{ name:'edit-customer',params:{id:customer.id}}" class="btn btn-sm btn-primary">Edit</router-link>
 
-                          <a @click="deleteProduct(product.id)" class="btn btn-sm btn-danger"><font color="#ffffff">Delete</font></a>
+                          <a @click="deleteCustomer(customer.id)" class="btn btn-sm btn-danger"><font color="#ffffff">Delete</font></a>
                         </td>
                       </tr>
                       
@@ -51,36 +46,36 @@
   
    </div>
 </template>
-<script>
+
+
+<script type="text/javascript">
 export default{
-    created(){
+  created(){
     if(!User.loggedIn()){
       this.$router.push({ name: '/'})
     }
   },
+  data(){
+      return{
+          customers:[],
+          searchTerm:''
+      }
+  },
   computed:{
     filterSearch(){
-      return this.products.filter(product=>{
-        return product.product_name.match(this.searchTerm)
+      return this.customers.filter(customer=>{
+        return customer.name.match(this.searchTerm)
       })
     }
 
   },
-  data(){
-      return{
-        categories:[],
-        products:[],
-        suppliers:[],
-        searchTerm:''
-      }
-  },
   methods:{
-    allProduct(){
-          axios.get('/api/product/')
-          .then(({data})=>(this.products=data))
+      allCustomer(){
+          axios.get('/api/customer/')
+          .then(({data})=>this.customers=data)
           .catch()
       },
-      deleteProduct(id){
+      deleteCustomer(id){
         Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -91,14 +86,14 @@ export default{
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.isConfirmed) {
-          axios.delete('/api/product/'+id)
+          axios.delete('/api/customer/'+id)
           .then(()=>{
-            this.products=this.products.filter(product=>{
-              return product.id!=id
+            this.customers=this.customers.filter(customer=>{
+              return customer.id!=id
             })
           })
           .catch(()=>{
-            this.$router.push({ name: 'product'})
+            this.$router.push({ name: 'customer'})
 
           })
           Swal.fire(
@@ -108,12 +103,18 @@ export default{
           )
         }
       })
+
       }
   },
   created(){
-      this.allProduct();
-  }
+    this.allCustomer();
+  } 
+
+
 }
+
+    
 </script>
-<style>
+<style scopped>
+
 </style>

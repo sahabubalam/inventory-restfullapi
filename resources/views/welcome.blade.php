@@ -33,6 +33,11 @@
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></router-link>
       </li>
+      <li class="nav-item bg-info">
+        <router-link class="nav-link" to="/pos">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>POS</span></router-link>
+      </li>
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
         Features
@@ -98,22 +103,66 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="forms.html">
-          <i class="fab fa-fw fa-wpforms"></i>
-          <span>Forms</span>
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap4"
+          aria-expanded="true" aria-controls="collapseBootstrap">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>Expenses</span>
         </a>
+        <div id="collapseBootstrap4" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+           
+            <router-link class="collapse-item" to="/expense">All Expense</router-link>
+            <router-link class="collapse-item" to="/store-expense">Add Expense</router-link>
+            
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap5"
+          aria-expanded="true" aria-controls="collapseBootstrap">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>Salary</span>
+        </a>
+        <div id="collapseBootstrap5" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+           
+            <router-link class="collapse-item" to="/salary">All Salary</router-link>
+            <router-link class="collapse-item" to="/given-salary">Add Salary</router-link>
+            
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="stock">
+          <i class="fab fa-fw fa-wpforms"></i>
+          <span>Stock</span>
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap6"
+          aria-expanded="true" aria-controls="collapseBootstrap">
+          <i class="far fa-fw fa-window-maximize"></i>
+          <span>Customers</span>
+        </a>
+        <div id="collapseBootstrap6" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+           
+            <router-link class="collapse-item" to="/customer">All Customer</router-link>
+            <router-link class="collapse-item" to="/store-customer">Add Customer</router-link>
+            
+          </div>
+        </div>
       </li>
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
           aria-controls="collapseTable">
           <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span>
+          <span>Reports</span>
         </a>
         <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Tables</h6>
-            <a class="collapse-item" href="simple-tables.html">Simple Tables</a>
-            <a class="collapse-item" href="datatables.html">DataTables</a>
+            <a class="collapse-item" href="simple-tables.html">Reports One</a>
+            <a class="collapse-item" href="datatables.html">Reports two</a>
           </div>
         </div>
       </li>
@@ -351,8 +400,21 @@
         </div>
         <!---Container Fluid-->
       </div>
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>copyright &copy; <script> document.write(new Date().getFullYear()); </script> - developed by
+                <b><a href="https://indrijunanda.gitlab.io/" target="_blank">Sahabub</a></b>
+              </span>
+            </div>
+          </div>
+        </footer>
+        <!-- Footer -->
      
     </div>
+    
   </div>
 </div>
 

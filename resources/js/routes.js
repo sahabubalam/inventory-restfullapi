@@ -26,7 +26,32 @@ let editcategory = require('./components/category/edit.vue').default;
 let storeproduct = require('./components/product/create.vue').default;
 let product = require('./components/product/index.vue').default;
 let editproduct = require('./components/product/edit.vue').default;
+let stock = require('./components/product/stock.vue').default;
+let editstock = require('./components/product/edit_stock.vue').default;
 //end product crud
+
+//start expense crud
+let storeexpense = require('./components/expense/create.vue').default;
+let expense = require('./components/expense/index.vue').default;
+let editexpense = require('./components/expense/edit.vue').default;
+//end expense crud
+
+//start salary crud
+let paysalary = require('./components/salary/create.vue').default;
+let salary = require('./components/salary/index.vue').default;
+let editsalary = require('./components/salary/edit_salary.vue').default;
+let allsalary = require('./components/salary/all_salary.vue').default;
+let viewsalary = require('./components/salary/view.vue').default;
+//end salary crud
+
+//start customer crud
+let storecustomer = require('./components/customer/create.vue').default;
+let customer = require('./components/customer/index.vue').default;
+let editcustomer = require('./components/customer/edit.vue').default;
+//end customer crud
+
+//pos curd
+let pos = require('./components/pos/pointofsale.vue').default;
 export const routes = [
     { path: '/', component: login, name:'/' },
     { path: '/register', component: register, name:'register' },
@@ -55,5 +80,30 @@ export const routes = [
      { path: '/store-product', component: storeproduct, name:'store-product' },
      { path: '/product', component: product, name:'product' },
      { path: '/edit-product/:id', component: editproduct, name:'edit-product' },
+     { path: '/stock', component: stock, name:'stock' },
+     { path: '/edit-stock/:id', component: editstock, name:'edit-stock' },
      //end product crud
+
+      //start expense crud
+      { path: '/store-expense', component: storeexpense, name:'store-expense' },
+      { path: '/expense', component: expense, name:'expense' },
+      { path: '/edit-expense/:id', component: editexpense, name:'edit-expense' },
+      //end expense crud
+
+       //start salary crud
+       { path: '/salary', component: allsalary, name:'allsalary' },
+       { path: '/given-salary', component: salary, name:'salary' },
+       { path: '/pay-salary/:id', component: paysalary, name:'pay-salary' },
+       { path: '/view-salary/:id', component: viewsalary, name:'view-salary' },
+       { path: '/edit-salary/:id', component: editsalary, name:'edit-salary' },
+       //end salary crud
+
+      //start customer crud
+      { path: '/store-customer', component: storecustomer, name:'store-customer' },
+      { path: '/customer', component: customer, name:'customer' },
+      { path: '/edit-customer/:id', component: editcustomer, name:'edit-customer' },
+      //end customer crud
+
+      //pos crud
+      { path: '/pos', component: pos, name:'pos' },
   ]

@@ -8,6 +8,12 @@ use App\Http\Controllers\Api\EmployeeController;
 use App\Http\Controllers\Api\SupplierController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\ExpenseController;
+use App\Http\Controllers\Api\SalaryController;
+use App\Http\Controllers\Api\CustomerController;
+use App\Http\Controllers\Api\PosController;
+
+
 
 
 /*
@@ -42,3 +48,13 @@ Route::apiResource('/employee', EmployeeController::class);
 Route::apiResource('/supplier', SupplierController::class);
 Route::apiResource('/category', CategoryController::class);
 Route::apiResource('/product', ProductController::class);
+Route::apiResource('/expense', ExpenseController::class);
+Route::post('/salary/paid/{id}', [SalaryController::class, 'paid']);
+Route::get('/salary', [SalaryController::class, 'AllSalary']);
+Route::get('/salary/view/{id}', [SalaryController::class, 'ViewSalary']);
+Route::get('/edit/salary/{id}', [SalaryController::class, 'EditSalary']);
+Route::post('/salary/update/{id}', [SalaryController::class, 'UpdateSalary']);
+Route::post('/update/stock/{id}', [ProductController::class, 'UpdateStock']);
+Route::apiResource('/customer', CustomerController::class);
+
+Route::get('/getting/product/{id}', [PosController::class, 'GettingProduct']);

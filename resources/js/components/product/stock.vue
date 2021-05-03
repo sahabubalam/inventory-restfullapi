@@ -21,7 +21,7 @@
                         <th>Product Photo</th>
                         <th>Category</th>
                         <th>Buying Price</th>
-                        <th>Selling Price</th>
+                        <th>Stock</th>
                         <th>Quantity</th>
                         <th>Action</th>
                       </tr>
@@ -32,12 +32,11 @@
                         <td><img :src="product.image" style="height:60px;width:60px"></td>
                         <td>{{product.category_name}}</td>
                         <td>{{product.buying_price}}</td>
-                        <td>{{product.selling_price}}</td>
+                        <td v-if="product.product_quantity>=1" ><span class="badge badge-success">Available</span></td>
+                        <td v-else=" "><span class="badge badge-danger">Stock Out</span></td>
                         <td>{{product.product_quantity}}</td>
                         <td>
-                          <router-link :to="{ name:'edit-product',params:{id:product.id}}" class="btn btn-sm btn-primary">Edit</router-link>
-
-                          <a @click="deleteProduct(product.id)" class="btn btn-sm btn-danger"><font color="#ffffff">Delete</font></a>
+                          <router-link :to="{ name:'edit-stock',params:{id:product.id}}" class="btn btn-sm btn-primary">Edit Stock</router-link>
                         </td>
                       </tr>
                       
@@ -80,35 +79,6 @@ export default{
           .then(({data})=>(this.products=data))
           .catch()
       },
-      deleteProduct(id){
-        Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          axios.delete('/api/product/'+id)
-          .then(()=>{
-            this.products=this.products.filter(product=>{
-              return product.id!=id
-            })
-          })
-          .catch(()=>{
-            this.$router.push({ name: 'product'})
-
-          })
-          Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
-            'success'
-          )
-        }
-      })
-      }
   },
   created(){
       this.allProduct();
