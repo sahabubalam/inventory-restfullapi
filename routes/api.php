@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\SalaryController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\PosController;
 use App\Http\Controllers\Api\CartController;
+use App\Http\Controllers\Api\OrderController;
 
 
 
@@ -67,3 +68,16 @@ Route::get('/increment/{id}', [CartController::class, 'Increment']);
 Route::get('/decrement/{id}', [CartController::class, 'Decrement']);
 //vat
 Route::get('/vats', [CartController::class, 'Vats']);
+//order
+Route::post('/orderdone', [PosController::class, 'OrderDone']);
+Route::get('/orders', [OrderController::class, 'TodayOrder']);
+Route::get('/order/details/{id}', [OrderController::class, 'OrderDetails']);
+Route::get('/order/orderdetails/{id}', [OrderController::class, 'OrderDetailsAll']);
+Route::post('/search/order', [PosController::class, 'SearchOrderDate']);
+
+//admin dashborad 
+Route::get('/today/sell', [PosController::class, 'TodaySell']);
+Route::get('/today/income', [PosController::class, 'TodayIncome']);
+Route::get('/today/due', [PosController::class, 'TodayDue']);
+Route::get('/today/expense', [PosController::class, 'TodayExpense']);
+Route::get('/today/stockout', [PosController::class, 'TodayStockOut']);

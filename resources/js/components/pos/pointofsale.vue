@@ -58,14 +58,14 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">Total Quantity:<strong>{{qty}}</strong></li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">Sub Total:<strong>{{subtotal}} $</strong></li>
                         <li class="list-group-item d-flex justify-content-between align-items-center">Vat:<strong>{{vats.vat}} %</strong></li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">Total:<strong>5644$</strong></li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">Total:<strong>{{subtotal*vats.vat/100+subtotal}}$</strong></li>
 
                     </ul>
                     <br>
-                    <form>
+                    <form @submit.prevent="orderdone">
                         <label>Customer Name</label>
                         <select class="form-control" v-model="customer_id">
-                            <option v-for="customer in customers">{{customer.name}}</option>
+                            <option :value="customer.id" v-for="customer in customers">{{customer.name}}</option>
                             
                         </select>
                         <label>Pay</label>
@@ -73,7 +73,7 @@
                         <label>Due</label>
                         <input type="text" class="form-control" required="" v-model="due">
                         <label>Pay By</label>
-                        <select class="form-control" v-model="customer_id">
+                        <select class="form-control" v-model="payby">
                             <option value="HandCash">Hand Cash</option>
                             <option  value="Cheque">Cheque</option>
                             <option value="GiftCard">Gift Card</option>
@@ -224,6 +224,12 @@ export default{
   },
   data(){
       return{
+
+        customer_id:'',
+        pay:'',
+        due:'',
+        payby:'',
+
         categories:[],
         getproducts:[],
         suppliers:[],
@@ -297,6 +303,16 @@ export default{
         axios.get('/api/vats/')
           .then(({data})=>(this.vats=data))
           .catch()
+      },
+      orderdone(){
+        let total=this.subtotal*this.vats.vat/100+this.subtotal
+        var data={ qty:this.qty,subtotal:this.subtotal,customer_id:this.customer_id,payby:this.payby,pay:this.pay,vat:this.vats.vat,total:total,due:this.due}
+        axios.post('/api/orderdone',data)
+        .then(()=>{
+            Notification.success()
+            this.$router.push({name:'home'})
+        })
+       
       }
      
   },
