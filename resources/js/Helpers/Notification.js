@@ -32,11 +32,29 @@ class Notification{
         timeout:1000,
     }).show();
    }
+   
    image_validation(){
     new Noty({
         type:'error',
         layout:'topRight',
         text: 'Upload Image Less Than 1MB!',
+        timeout:1000,
+    }).show();
+   }
+   
+   cart_success(){
+    new Noty({
+        type:'success',
+        layout:'topRight',
+        text: 'Successfully add to cart!',
+        timeout:1000,
+    }).show();
+   }
+   cart_delete(){
+    new Noty({
+        type:'success',
+        layout:'topRight',
+        text: 'Successfully Deleted!',
         timeout:1000,
     }).show();
    }

@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\ExpenseController;
 use App\Http\Controllers\Api\SalaryController;
 use App\Http\Controllers\Api\CustomerController;
 use App\Http\Controllers\Api\PosController;
+use App\Http\Controllers\Api\CartController;
 
 
 
@@ -58,3 +59,11 @@ Route::post('/update/stock/{id}', [ProductController::class, 'UpdateStock']);
 Route::apiResource('/customer', CustomerController::class);
 
 Route::get('/getting/product/{id}', [PosController::class, 'GettingProduct']);
+//add to cart
+Route::get('/addtocart/{id}', [CartController::class, 'AddtoCart']);
+Route::get('/cart/product', [CartController::class, 'CartProduct']);
+Route::get('/remove/cart/{id}', [CartController::class, 'RemoveCart']);
+Route::get('/increment/{id}', [CartController::class, 'Increment']);
+Route::get('/decrement/{id}', [CartController::class, 'Decrement']);
+//vat
+Route::get('/vats', [CartController::class, 'Vats']);

@@ -26,7 +26,7 @@ const Toast = Swal.mixin({
 })
 window.Toast=Toast;
 //sweet alert end
-
+window.Reload=new Vue();
 
 //import user class
 import User from './Helpers/User';
@@ -34,6 +34,7 @@ import User from './Helpers/User';
 window.User = User
 //import notification
 import Notification from './Helpers/Notification';
+
 
 window.Notification = Notification
 const router = new VueRouter({
